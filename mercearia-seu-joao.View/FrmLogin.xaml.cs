@@ -32,7 +32,7 @@ namespace mercearia_seu_joao.View
                 Usuario usuario = cUsuario.ObterUsuarioPeloEmailSenha(email, senha);
                 if (usuario != null)
                 {
-                   //AbrirTelaMenu();
+                   AbrirTelaMenu(usuario.tipoUsuario);
                 }
 
                 else
@@ -64,11 +64,11 @@ namespace mercearia_seu_joao.View
             }
             return false;
         }
-        private void AbrirTelaMenu()
+        private void AbrirTelaMenu(string tipoUsuario)
         {
-            //FrmMenu frmMenu = new FrmMenu();
-           // frmMenu.Show();
-          //  Close();
+            FrmMenu frmMenu = new FrmMenu(tipoUsuario);
+            frmMenu.Show();
+            Close();
         }
 
         private void EsqueceuSenha(object sender, MouseButtonEventArgs e)

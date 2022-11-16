@@ -18,7 +18,7 @@ public static class ConsultaUsuario
         {
             conexao.Open();
             var comando = conexao.CreateCommand();
-            comando.CommandText = @"Select * from Usuario Where email = @email and senha = @senha";
+            comando.CommandText = @"Select * from usuario Where email = @email and senha = @senha";
             comando.Parameters.AddWithValue("@senha", senhaCriptografada);
             comando.Parameters.AddWithValue("@email", email);
             var leitura = comando.ExecuteReader();
@@ -27,8 +27,13 @@ public static class ConsultaUsuario
             {
                 usuario = new Usuario();
                 usuario.id = leitura.GetInt32("id");
+                usuario.nome = leitura.GetString("nome");
+                usuario.tipoUsuario = leitura.GetString("tipoUsuario");
                 usuario.email = leitura.GetString("email");
                 usuario.senha = leitura.GetString("senha");
+                usuario.dataHoraInserido = leitura.GetString("dataInserido");
+                usuario.dataHoraAlterado = leitura.GetString("dataAlterado");
+                usuario.dataHoraExclusao = leitura.GetString("dataExclusao");
                 break;
             }
         }
@@ -48,5 +53,7 @@ public static class ConsultaUsuario
 
         return usuario;
     }
+
+   
 }
 
